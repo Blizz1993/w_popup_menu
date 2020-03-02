@@ -270,7 +270,11 @@ class _MenuPopWidgetState extends State<_MenuPopWidget> {
                                       _curPage--;
                                     });
                                   },
-                                  child: widget.leftWhiteIcon,
+                                  child: Container(
+                                    width: _arrowWidth,
+                                    height: widget.menuHeight,
+                                    child: widget.leftWhiteIcon,
+                                  ),
                                 ),
                                 // 左箭头：判断是否是第一页，如果是第一页则不显示
                                 _curPage == 0
@@ -307,9 +311,13 @@ class _MenuPopWidgetState extends State<_MenuPopWidget> {
                                         _curPage++;
                                       });
                                   },
-                                  child: (_curPage + 1) * widget._pageMaxChildCount >= widget.actions.length ?
-                                      widget.rightGreyIcon : widget.rightWhiteIcon,
-                                  )
+                                  child: Container(
+                                    width: _arrowWidth,
+                                    height: widget.menuHeight,
+                                    child: (_curPage + 1) * widget._pageMaxChildCount >= widget.actions.length ?
+                                      widget.rightGreyIcon : widget.rightWhiteIcon
+                                  ),
+                                )
                                     : Container(
                                   height: widget.menuHeight,
                                 ),
