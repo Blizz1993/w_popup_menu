@@ -14,6 +14,9 @@ class WPopupMenu extends StatefulWidget {
     this.backgroundColor = Colors.black,
     this.menuWidth = 250,
     this.menuHeight = 42,
+    @required this.leftWhiteIcon,
+    @required this.rightWhiteIcon,
+    @required this.rightGreyIcon,
   });
 
   final ValueChanged<int> onValueChanged;
@@ -24,6 +27,9 @@ class WPopupMenu extends StatefulWidget {
   final Color backgroundColor;
   final double menuWidth;
   final double menuHeight;
+  final Widget leftWhiteIcon;
+  final Widget rightWhiteIcon;
+  final Widget rightGreyIcon;
 
   @override
   _WPopupMenuState createState() => _WPopupMenuState();
@@ -81,6 +87,9 @@ class _WPopupMenuState extends State<WPopupMenu> {
         if (index != -1) widget.onValueChanged(index);
         removeOverlay();
       },
+      widget.leftWhiteIcon,
+      widget.rightWhiteIcon,
+      widget.rightGreyIcon,
     );
 
     entry = OverlayEntry(builder: (context) {
@@ -114,6 +123,9 @@ class _MenuPopWidget extends StatefulWidget {
   final RenderBox button;
   final RenderBox overlay;
   final ValueChanged<int> onValueChanged;
+  final Widget leftWhiteIcon;
+  final Widget rightWhiteIcon;
+  final Widget rightGreyIcon;
 
   _MenuPopWidget(
       this.btnContext,
@@ -127,6 +139,9 @@ class _MenuPopWidget extends StatefulWidget {
       this.button,
       this.overlay,
       this.onValueChanged,
+      this.leftWhiteIcon,
+      this.rightWhiteIcon,
+      this.rightGreyIcon,
       );
 
   @override
@@ -258,10 +273,7 @@ class _MenuPopWidgetState extends State<_MenuPopWidget> {
                                   child: Container(
                                     width: _arrowWidth,
                                     height: widget.menuHeight,
-                                    child: Image.asset(
-                                      'images/left_white.png',
-                                      fit: BoxFit.none,
-                                    ),
+                                    child: widget.leftWhiteIcon,
                                   ),
                                 ),
                                 // 左箭头：判断是否是第一页，如果是第一页则不显示
@@ -302,15 +314,8 @@ class _MenuPopWidgetState extends State<_MenuPopWidget> {
                                   child: Container(
                                     width: _arrowWidth,
                                     height: widget.menuHeight,
-                                    child: Image.asset(
-                                      (_curPage + 1) *
-                                          widget
-                                              ._pageMaxChildCount >=
-                                          widget.actions.length
-                                          ? 'images/right_gray.png'
-                                          : 'images/right_white.png',
-                                      fit: BoxFit.none,
-                                    ),
+                                    child: (_curPage + 1) * widget._pageMaxChildCount >= widget.actions.length ?
+                                      widget.rightGreyIcon : widget.rightWhiteIcon
                                   ),
                                 )
                                     : Container(
