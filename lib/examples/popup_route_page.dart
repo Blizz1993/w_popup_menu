@@ -38,6 +38,9 @@ class _PopupRoutePageState extends State<PopupRoutePage> {
                   onValueChanged: (int value) {
                     Scaffold.of(context).showSnackBar(SnackBar(content: Text(actions[value]), duration: Duration(milliseconds: 500),));
                   },
+                  leftWhiteIcon: Container(),
+                  rightGreyIcon: Container(),
+                  rightWhiteIcon: Container(),
                   actions: actions,
                   child: Container(
                     height: 50,
