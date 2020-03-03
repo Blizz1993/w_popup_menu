@@ -278,6 +278,7 @@ class _MenuPopWidgetState extends State<_MenuPopWidget> {
                                   child: Container(
                                     width: _arrowWidth,
                                     height: widget.menuHeight,
+                                    alignment: Alignment.center,
                                     child: widget.leftWhiteIcon,
                                   ),
                                 ),
