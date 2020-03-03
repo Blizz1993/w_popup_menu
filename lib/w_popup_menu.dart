@@ -269,7 +269,7 @@ class _MenuPopWidgetState extends State<_MenuPopWidget> {
                                     ? Container(
                                   height: widget.menuHeight,
                                 )
-                                    : InkWell(
+                                    : GestureDetector(
                                   onTap: () {
                                     setState(() {
                                       _curPage--;
@@ -307,7 +307,7 @@ class _MenuPopWidgetState extends State<_MenuPopWidget> {
                                   height: widget.menuHeight,
                                 ),
                                 _curArrowCount > 0
-                                    ? InkWell(
+                                    ? GestureDetector(
                                   onTap: () {
                                     if ((_curPage + 1) *
                                         widget._pageMaxChildCount <
