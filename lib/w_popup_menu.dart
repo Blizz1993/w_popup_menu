@@ -317,8 +317,9 @@ class _MenuPopWidgetState extends State<_MenuPopWidget> {
                                       });
                                   },
                                   child: Container(
-                                    width: _arrowWidth,
+                                    width: widget.menuWidth,
                                     height: widget.menuHeight,
+                                    alignment: Alignment.center,
                                     child: (_curPage + 1) * widget._pageMaxChildCount >= widget.actions.length ?
                                       widget.rightGreyIcon : widget.rightWhiteIcon
                                   ),
