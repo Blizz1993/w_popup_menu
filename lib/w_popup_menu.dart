@@ -14,6 +14,7 @@ class WPopupMenu extends StatefulWidget {
     this.backgroundColor = Colors.black,
     this.menuWidth = 250,
     this.menuHeight = 42,
+    this.actionTextStyle,
     @required this.leftWhiteIcon,
     @required this.rightWhiteIcon,
     @required this.rightGreyIcon,
@@ -30,6 +31,7 @@ class WPopupMenu extends StatefulWidget {
   final Widget leftWhiteIcon;
   final Widget rightWhiteIcon;
   final Widget rightGreyIcon;
+  final TextStyle actionTextStyle;
 
   @override
   _WPopupMenuState createState() => _WPopupMenuState();
@@ -90,6 +92,7 @@ class _WPopupMenuState extends State<WPopupMenu> {
       widget.leftWhiteIcon,
       widget.rightWhiteIcon,
       widget.rightGreyIcon,
+      widget.actionTextStyle
     );
 
     entry = OverlayEntry(builder: (context) {
@@ -126,6 +129,7 @@ class _MenuPopWidget extends StatefulWidget {
   final Widget leftWhiteIcon;
   final Widget rightWhiteIcon;
   final Widget rightGreyIcon;
+  final TextStyle actionTextStyle;
 
   _MenuPopWidget(
       this.btnContext,
@@ -142,6 +146,7 @@ class _MenuPopWidget extends StatefulWidget {
       this.leftWhiteIcon,
       this.rightWhiteIcon,
       this.rightGreyIcon,
+      this.actionTextStyle,
       );
 
   @override
@@ -372,7 +377,7 @@ class _MenuPopWidgetState extends State<_MenuPopWidget> {
             child: Center(
               child: Text(
                 widget.actions[_curPage * widget._pageMaxChildCount + index],
-                style: TextStyle(color: Colors.white, fontSize: 16),
+                style: widget.actionTextStyle ?? TextStyle(color: Colors.white, fontSize: 16),
               ),
             ),
           ),
