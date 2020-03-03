@@ -270,6 +270,7 @@ class _MenuPopWidgetState extends State<_MenuPopWidget> {
                                   height: widget.menuHeight,
                                 )
                                     : GestureDetector(
+                                  behavior: HitTestBehavior.translucent,
                                   onTap: () {
                                     setState(() {
                                       _curPage--;
@@ -309,6 +310,7 @@ class _MenuPopWidgetState extends State<_MenuPopWidget> {
                                 ),
                                 _curArrowCount > 0
                                     ? GestureDetector(
+                                  behavior: HitTestBehavior.translucent,
                                   onTap: () {
                                     if ((_curPage + 1) *
                                         widget._pageMaxChildCount <
