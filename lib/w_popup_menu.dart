@@ -74,6 +74,10 @@ class _WPopupMenuState extends State<WPopupMenu> {
   }
 
   void onTap() {
+    width = context.size.width;
+    height = context.size.height;
+    button = context.findRenderObject();
+    overlay = Overlay.of(context).context.findRenderObject();
     Widget menuWidget =  _MenuPopWidget(
       context,
       height,
