@@ -18,6 +18,7 @@ class WPopupMenu extends StatefulWidget {
     @required this.leftWhiteIcon,
     @required this.rightWhiteIcon,
     @required this.rightGreyIcon,
+    this.tapDlc
   });
 
   final ValueChanged<int> onValueChanged;
@@ -32,6 +33,7 @@ class WPopupMenu extends StatefulWidget {
   final Widget rightWhiteIcon;
   final Widget rightGreyIcon;
   final TextStyle actionTextStyle;
+  final Function tapDlc;
 
   @override
   _WPopupMenuState createState() => _WPopupMenuState();
@@ -47,12 +49,12 @@ class _WPopupMenuState extends State<WPopupMenu> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((call) {
-      width = context.size.width;
-      height = context.size.height;
-      button = context.findRenderObject();
-      overlay = Overlay.of(context).context.findRenderObject();
-    });
+    // WidgetsBinding.instance.addPostFrameCallback((call) {
+    //   width = context.size.width;
+    //   height = context.size.height;
+    //   button = context.findRenderObject();
+    //   overlay = Overlay.of(context).context.findRenderObject();
+    // });
   }
 
   @override
@@ -63,12 +65,14 @@ class _WPopupMenuState extends State<WPopupMenu> {
       onTap: () {
         if (widget.pressType == PressType.singleClick) {
           onTap();
-        }
+        }else if(widget.tapDlc != null)
+          widget.tapDlc();
       },
       onLongPress: () {
         if (widget.pressType == PressType.longPress) {
           onTap();
-        }
+        }else if(widget.tapDlc != null)
+          widget.tapDlc();
       },
     );
   }
