@@ -18,7 +18,9 @@ class WPopupMenu extends StatefulWidget {
     @required this.leftWhiteIcon,
     @required this.rightWhiteIcon,
     @required this.rightGreyIcon,
-    this.tapDlc
+    this.tapDlc,
+    this.separator,
+    this.separatorWidth,
   });
 
   final ValueChanged<int> onValueChanged;
@@ -34,6 +36,8 @@ class WPopupMenu extends StatefulWidget {
   final Widget rightGreyIcon;
   final TextStyle actionTextStyle;
   final Function tapDlc;
+  final Widget separator;
+  final double separatorWidth;
 
   @override
   _WPopupMenuState createState() => _WPopupMenuState();
@@ -100,7 +104,9 @@ class _WPopupMenuState extends State<WPopupMenu> {
       widget.leftWhiteIcon,
       widget.rightWhiteIcon,
       widget.rightGreyIcon,
-      widget.actionTextStyle
+      widget.actionTextStyle,
+      widget.separator,
+      widget.separatorWidth
     );
 
     entry = OverlayEntry(builder: (context) {
@@ -138,6 +144,9 @@ class _MenuPopWidget extends StatefulWidget {
   final Widget rightWhiteIcon;
   final Widget rightGreyIcon;
   final TextStyle actionTextStyle;
+  final Widget separator;
+  final double separatorWidth;
+
 
   _MenuPopWidget(
       this.btnContext,
@@ -155,6 +164,8 @@ class _MenuPopWidget extends StatefulWidget {
       this.rightWhiteIcon,
       this.rightGreyIcon,
       this.actionTextStyle,
+      this.separator,
+      this.separatorWidth,
       );
 
   @override
@@ -163,8 +174,8 @@ class _MenuPopWidget extends StatefulWidget {
 
 class _MenuPopWidgetState extends State<_MenuPopWidget> {
   int _curPage = 0;
+  double _separatorWidth = 1;
   final double _arrowWidth = 40;
-  final double _separatorWidth = 1;
   final double _triangleHeight = 10;
 
   RelativeRect position;
@@ -179,6 +190,7 @@ class _MenuPopWidgetState extends State<_MenuPopWidget> {
       ),
       Offset.zero & widget.overlay.size,
     );
+    _separatorWidth = widget.separatorWidth ?? _separatorWidth;
   }
 
   @override
@@ -396,7 +408,7 @@ class _MenuPopWidgetState extends State<_MenuPopWidget> {
         );
       },
       separatorBuilder: (BuildContext context, int index) {
-        return Container(
+        return widget.separator ?? Container(
           width: 1,
           height: widget.menuHeight,
           color: Colors.grey,
