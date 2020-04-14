@@ -19,6 +19,7 @@ class WPopupMenu extends StatefulWidget {
     @required this.rightWhiteIcon,
     @required this.rightGreyIcon,
     this.tapDlc,
+    this.longPressDlc,
     this.separator,
     this.separatorWidth,
   });
@@ -36,6 +37,7 @@ class WPopupMenu extends StatefulWidget {
   final Widget rightGreyIcon;
   final TextStyle actionTextStyle;
   final Function tapDlc;
+  final Function longPressDlc;
   final Widget separator;
   final double separatorWidth;
 
@@ -69,12 +71,18 @@ class _WPopupMenuState extends State<WPopupMenu> {
       onTap: () {
         if (widget.pressType == PressType.singleClick) {
           onTap();
+          if (widget.longPressDlc != null) {
+            widget.longPressDlc();
+          }
         }else if(widget.tapDlc != null)
           widget.tapDlc();
       },
       onLongPress: () {
         if (widget.pressType == PressType.longPress) {
           onTap();
+          if (widget.longPressDlc != null) {
+            widget.longPressDlc();
+          }
         }else if(widget.tapDlc != null)
           widget.tapDlc();
       },
