@@ -17,6 +17,7 @@ class WPopupMenu extends StatefulWidget {
     this.menuWidth = 250,
     this.menuHeight = 42,
     this.actionTextStyle,
+    @required this.time,
     @required this.leftWhiteIcon,
     @required this.rightWhiteIcon,
     @required this.rightGreyIcon,
@@ -40,6 +41,7 @@ class WPopupMenu extends StatefulWidget {
   final Widget rightWhiteIcon;
   final Widget rightGreyIcon;
   final TextStyle actionTextStyle;
+  final int time;
   final Function tapDlc;
   final Function longPressDlc;
   final Widget separator;
@@ -59,7 +61,6 @@ class _WPopupMenuState extends State<WPopupMenu> {
 
   @override
   void initState() {
-    actions = widget.canDraw ? widget.actions : widget.actions2;
     super.initState();
   }
 
@@ -90,6 +91,9 @@ class _WPopupMenuState extends State<WPopupMenu> {
   }
 
   void onTap() {
+    int duringTime = DateTime.now().millisecondsSinceEpoch - widget.time;
+    actions = duringTime <= 180000 && widget.canDraw ? widget.actions : widget.actions2;
+    DateTime.now().millisecondsSinceEpoch;
     width = context.size.width;
     height = context.size.height;
     button = context.findRenderObject();
