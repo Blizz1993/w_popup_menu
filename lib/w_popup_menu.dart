@@ -8,6 +8,8 @@ class WPopupMenu extends StatefulWidget {
     Key key,
     @required this.onValueChanged,
     @required this.actions,
+    @required this.actions2,
+    @required this.canDraw,
     @required this.child,
     this.pressType = PressType.longPress,
     this.pageMaxChildCount = 5,
@@ -26,6 +28,8 @@ class WPopupMenu extends StatefulWidget {
 
   final ValueChanged<int> onValueChanged;
   final List<String> actions;
+  final List<String> actions2;
+  final bool canDraw;
   final Widget child;
   final PressType pressType; // 点击方式 长按 还是单击
   final int pageMaxChildCount;
@@ -51,16 +55,12 @@ class _WPopupMenuState extends State<WPopupMenu> {
   RenderBox button;
   RenderBox overlay;
   OverlayEntry entry;
+  List<String> actions;
 
   @override
   void initState() {
+    actions = widget.canDraw ? widget.actions : widget.actions2;
     super.initState();
-    // WidgetsBinding.instance.addPostFrameCallback((call) {
-    //   width = context.size.width;
-    //   height = context.size.height;
-    //   button = context.findRenderObject();
-    //   overlay = Overlay.of(context).context.findRenderObject();
-    // });
   }
 
   @override
@@ -98,7 +98,7 @@ class _WPopupMenuState extends State<WPopupMenu> {
       context,
       height,
       width,
-      widget.actions,
+      actions,
       widget.pageMaxChildCount,
       widget.backgroundColor,
       widget.menuWidth,
