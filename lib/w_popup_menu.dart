@@ -68,27 +68,30 @@ class _WPopupMenuState extends State<WPopupMenu> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      behavior: HitTestBehavior.translucent,
-      child: widget.child,
-      onTap: () {
-        if (widget.pressType == PressType.singleClick) {
-          onTap();
-          if (widget.longPressDlc != null) {
-            widget.longPressDlc();
-          }
-        }else if(widget.tapDlc != null)
-          widget.tapDlc();
-      },
-      onLongPress: () {
-        if (widget.pressType == PressType.longPress) {
-          onTap();
-          if (widget.longPressDlc != null) {
-            widget.longPressDlc();
-          }
-        }else if(widget.tapDlc != null)
-          widget.tapDlc();
-      },
+    return WillPopScope(
+      child: GestureDetector(
+        behavior: HitTestBehavior.translucent,
+        child: widget.child,
+        onTap: () {
+          if (widget.pressType == PressType.singleClick) {
+            onTap();
+            if (widget.longPressDlc != null) {
+              widget.longPressDlc();
+            }
+          }else if(widget.tapDlc != null)
+            widget.tapDlc();
+        },
+        onLongPress: () {
+          if (widget.pressType == PressType.longPress) {
+            onTap();
+            if (widget.longPressDlc != null) {
+              widget.longPressDlc();
+            }
+          }else if(widget.tapDlc != null)
+            widget.tapDlc();
+        },
+      ), 
+      onWillPop: () => removeOverlay(),
     );
   }
 
@@ -130,7 +133,7 @@ class _WPopupMenuState extends State<WPopupMenu> {
     Overlay.of(context).insert(entry);
   }
 
-  void removeOverlay() {
+  removeOverlay() {
     if (widget.removeOverlayDlc != null) {
       widget.removeOverlayDlc();
     }
@@ -239,7 +242,6 @@ class _MenuPopWidgetState extends State<_MenuPopWidget> {
     double _curPageWidth = widget.menuWidth +
         (_curPageChildCount - 1 + _curArrowCount) * _separatorWidth +
         _curArrowWidth;
-
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: (){
