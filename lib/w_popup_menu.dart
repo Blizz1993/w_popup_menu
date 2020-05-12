@@ -23,6 +23,7 @@ class WPopupMenu extends StatefulWidget {
     @required this.rightGreyIcon,
     this.tapDlc,
     this.longPressDlc,
+    this.removeOverlayDlc,
     this.separator,
     this.separatorWidth,
   });
@@ -44,6 +45,7 @@ class WPopupMenu extends StatefulWidget {
   final int time;
   final Function tapDlc;
   final Function longPressDlc;
+  final Function removeOverlayDlc;
   final Widget separator;
   final double separatorWidth;
 
@@ -118,7 +120,8 @@ class _WPopupMenuState extends State<WPopupMenu> {
       widget.rightGreyIcon,
       widget.actionTextStyle,
       widget.separator,
-      widget.separatorWidth
+      widget.separatorWidth,
+      widget.removeOverlayDlc,
     );
 
     entry = OverlayEntry(builder: (context) {
@@ -128,6 +131,9 @@ class _WPopupMenuState extends State<WPopupMenu> {
   }
 
   void removeOverlay() {
+    if (widget.removeOverlayDlc != null) {
+      widget.removeOverlayDlc();
+    }
     entry.remove();
     entry = null;
   }
@@ -158,7 +164,7 @@ class _MenuPopWidget extends StatefulWidget {
   final TextStyle actionTextStyle;
   final Widget separator;
   final double separatorWidth;
-
+  final Function removeOverlayDlc;
 
   _MenuPopWidget(
       this.btnContext,
@@ -178,6 +184,7 @@ class _MenuPopWidget extends StatefulWidget {
       this.actionTextStyle,
       this.separator,
       this.separatorWidth,
+      this.removeOverlayDlc
       );
 
   @override
