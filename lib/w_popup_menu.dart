@@ -95,6 +95,12 @@ class _WPopupMenuState extends State<WPopupMenu> {
     );
   }
 
+  @override
+  dispose() {
+    removeOverlay();
+    super.dispose();
+  }
+
   void onTap() {
     int duringTime = DateTime.now().millisecondsSinceEpoch - widget.time;
     actions = duringTime <= 180000 && widget.canDraw ? widget.actions : widget.actions2;
@@ -134,13 +140,15 @@ class _WPopupMenuState extends State<WPopupMenu> {
   }
 
   removeOverlay() {
-    if (widget.removeOverlayDlc != null) {
-      widget.removeOverlayDlc();
+  if (widget.removeOverlayDlc != null) {
+        widget.removeOverlayDlc();
+      }
+      if (entry != null) {
+        entry.remove();
+      }
+      entry = null;
     }
-    entry.remove();
-    entry = null;
   }
-}
 
 enum PressType {
   // 长按
