@@ -68,30 +68,27 @@ class _WPopupMenuState extends State<WPopupMenu> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      child: GestureDetector(
-        behavior: HitTestBehavior.translucent,
-        child: widget.child,
-        onTap: () {
-          if (widget.pressType == PressType.singleClick) {
-            onTap();
-            if (widget.longPressDlc != null) {
-              widget.longPressDlc();
-            }
-          }else if(widget.tapDlc != null)
-            widget.tapDlc();
-        },
-        onLongPress: () {
-          if (widget.pressType == PressType.longPress) {
-            onTap();
-            if (widget.longPressDlc != null) {
-              widget.longPressDlc();
-            }
-          }else if(widget.tapDlc != null)
-            widget.tapDlc();
-        },
-      ), 
-      onWillPop: () => removeOverlay(),
+    return GestureDetector(
+      behavior: HitTestBehavior.translucent,
+      child: widget.child,
+      onTap: () {
+        if (widget.pressType == PressType.singleClick) {
+          onTap();
+          if (widget.longPressDlc != null) {
+            widget.longPressDlc();
+          }
+        }else if(widget.tapDlc != null)
+          widget.tapDlc();
+      },
+      onLongPress: () {
+        if (widget.pressType == PressType.longPress) {
+          onTap();
+          if (widget.longPressDlc != null) {
+            widget.longPressDlc();
+          }
+        }else if(widget.tapDlc != null)
+          widget.tapDlc();
+      },
     );
   }
 
