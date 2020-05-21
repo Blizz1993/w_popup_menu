@@ -50,10 +50,10 @@ class WPopupMenu extends StatefulWidget {
   final double separatorWidth;
 
   @override
-  _WPopupMenuState createState() => _WPopupMenuState();
+  WPopupMenuState createState() => WPopupMenuState();
 }
 
-class _WPopupMenuState extends State<WPopupMenu> {
+class WPopupMenuState extends State<WPopupMenu> {
   double width;
   double height;
   RenderBox button;
